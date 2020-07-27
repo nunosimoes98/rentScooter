@@ -1,0 +1,46 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+    @Html.AntiForgeryToken()
+
+    <ul class="nav navbar-nav navbar-right">
+        @if (User.IsInRole("Admin"))
+        {
+            <li>
+                @Html.ActionLink("Relatórios", "SelectDistrito", "Relatorios")
+            </li>
+            <li>
+                @Html.ActionLink("Reservas", "ManageSelectDistrito", "Reservas")
+            </li>
+            <li>
+                @Html.ActionLink("Estações", "Index", "Estacoes")
+            </li>
+        }
+        else
+        {
+            <li>
+                @Html.ActionLink("Estações", "IndexUser", "Estacoes")
+            </li>
+            <li>
+                @Html.ActionLink("Minhas Reservas", "Index", "Reservas")
+            </li>
+        }
+        <li>
+            @Html.ActionLink("Conta", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+        </li>
+        <li><a href="javascript:document.getElementById('logoutForm').submit()">Sair</a></li>
+    </ul>
+    }
+}
+else
+{
+<ul class="nav navbar-nav navbar-right">
+    <li>
+        @Html.ActionLink("Estações", "IndexUser", "Estacoes")
+    </li>
+    <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+    <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+</ul>
+}

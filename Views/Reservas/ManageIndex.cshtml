@@ -1,0 +1,43 @@
+﻿@model IEnumerable<eRecarga.Models.Reserva>
+
+@{
+    ViewBag.Title = "Reservas";
+}
+
+<h2>Reservas da Estação @ViewBag.Estacao.Nome</h2>
+
+<p>
+    @Html.ActionLink("Dia Anterior", "ManageIndex", new { distritoId = ViewBag.Distrito.Id, estacaoId = ViewBag.Estacao.Id, data = ViewBag.Data.AddDays(-1) })
+    @ViewBag.Data.ToShortDateString()
+    @Html.ActionLink("Dia Seguinte", "ManageIndex", new { distritoId = ViewBag.Distrito.Id, estacaoId = ViewBag.Estacao.Id, data = ViewBag.Data.AddDays(1) })
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Utilizador")
+        </th>
+        <th>
+            @Html.DisplayName("Código")
+        </th>
+        <th>
+            @Html.DisplayName("Hora")
+        </th>
+    </tr>
+
+    @foreach (var item in ViewBag.Reserva)
+    {
+        <tr>
+            <td>
+                @item.User.UserName
+            </td>
+            <td>
+                @item.CodigoServico
+            </td>
+            <td>
+                @item.Data.ToShortTimeString()
+            </td>
+        </tr>
+    }
+
+</table>

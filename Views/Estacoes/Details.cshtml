@@ -1,0 +1,130 @@
+﻿@model eRecarga.Models.Estacao
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Estacao</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Distrito.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Distrito.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HoraAbertura)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoraAbertura)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HoraFecho)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoraFecho)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Longitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Longitude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Latitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Latitude)
+        </dd>
+
+    </dl>
+</div>
+
+<h3>Postos</h3>
+
+<p>
+    @Html.ActionLink("Criar Novo Posto", "CreateComEstacao", "Postos", new { estacaoId = Model.Id }, null)
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Postos)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var posto in Model.Postos)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => posto.Nome)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", "Postos", new { id = posto.Id, estacaoId = Model.Id }, null) |
+                @Html.ActionLink("Delete", "Delete", "Postos", new { id = posto.Id, estacaoId = Model.Id }, null)
+            </td>
+        </tr>
+    }
+
+</table>
+
+<h3>Preços</h3>
+<p>
+    @Html.ActionLink("Criar Novo Preço", "Create", "Precos", new { estacaoId = Model.Id } ,null)
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Horas
+        </th>
+        <th>
+            Valor
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Precos)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.HoraInicio) - @Html.DisplayFor(modelItem => item.HoraFim)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Valor)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", "Precos", new { id = item.Id }, null) |
+        @Html.ActionLink("Delete", "Delete", "Precos", new { id = item.Id }, null)
+    </td>
+</tr>
+    }
+
+</table>
+
+
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

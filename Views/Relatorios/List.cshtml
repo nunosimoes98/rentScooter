@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "Relatórios";
+}
+
+<h2>Relatório @ViewBag.Estacao.Nome</h2>
+
+<table class="table">
+    <tr>
+        <th>
+           Hora
+        </th>
+        <th>
+           Contagem
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in ViewBag.Dados)
+    {
+        <tr>
+            <td>
+                @item.hora.ToShortTimeString()
+            </td>
+            <td>
+                @item.valor
+            </td>
+        </tr>
+    }
+   </table>

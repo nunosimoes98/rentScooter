@@ -1,0 +1,94 @@
+﻿@model eRecarga.Models.Estacao
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalhes da Estação @Html.DisplayFor(model => model.Nome)</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Distrito
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Distrito.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HoraAbertura)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoraAbertura)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HoraFecho)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoraFecho)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Longitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Longitude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Latitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Latitude)
+        </dd>
+
+    </dl>
+</div>
+
+<h3>Postos</h3>
+
+<table class="table">
+
+    @foreach (var posto in Model.Postos)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => posto.Nome)
+            </td>
+        </tr>
+    }
+
+</table>
+
+<h3>Preços</h3>
+
+<table class="table">
+    <tr>
+        <th>
+            Horas
+        </th>
+        <th>
+            Valor
+        </th>
+    </tr>
+
+    @foreach (var item in Model.Precos)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.HoraInicio) - @Html.DisplayFor(modelItem => item.HoraFim)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Valor) &euro;
+    </td>
+</tr>
+    }
+
+</table>

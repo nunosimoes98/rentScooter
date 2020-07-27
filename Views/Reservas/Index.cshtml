@@ -1,0 +1,49 @@
+﻿@model IEnumerable<eRecarga.Models.Reserva>
+
+@{
+    ViewBag.Title = "Minhas Reservas";
+}
+
+<h2>As minhas reservas</h2>
+
+<p>
+    @Html.ActionLink("Nova Reserva", "SelectDistrito")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Estacao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CodigoServico)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Data)
+        </th>
+        <th>
+            Preço
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Estacao.Nome)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.CodigoServico)
+    </td>
+    <td>
+        @item.Data.ToShortDateString() @item.Data.ToShortTimeString()
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Estacao.Precos.FirstOrDefault(p => p.HoraInicio <= item.Data.TimeOfDay && p.HoraFim > item.Data.TimeOfDay).Valor ) €
+    </td>
+    <td>
+        @Html.ActionLink("Apagar", "Delete", new { id = item.Id })
+    </td>
+</tr>
+}
+
+</table>
